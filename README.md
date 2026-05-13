@@ -29,9 +29,12 @@ En esta etapa del proyecto, se desarrollaron los siguientes 6 microservicios:
 ## Pasos para Ejecutar
 
 **1. Levantar la base de datos (Docker)**
-* Abre una terminal en esta carpeta principal.
+* Descargar Docker Desktop de la pagina oficial [Enlace Docker oficial](https://www.docker.com/products/docker-desktop/)
+* Abrir Docker
+* Descargar todo el contenido, los microservicios y Docker Restaurant
+* Abre una terminal en esta carpeta Docker restaurant "Tip: Dar segundo clic en la carpeta y poner abrir terminal".
 * Ejecuta el comando: `docker-compose up -d`
-* Esto creará automáticamente las bases de datos para los tres microservicios en el puerto 3306.
+* Esto creará automáticamente las bases de datos para los seis microservicios en el puerto 3306.
 
 **2. Iniciar los microservicios**
 Abre tu editor de código (como VS Code o IntelliJ) y ejecuta los proyectos en este orden:
