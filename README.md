@@ -5,7 +5,7 @@
 Este proyecto es el backend para administrar un restaurante, construido usando una arquitectura de microservicios. Para esta entrega, el sistema cuenta con 6 microservicios  conectados a sus propias bases de datos mediante Docker.
 
 ## Profesor
-  Hernan Saavedra
+* Hernan Saavedra
 
 ## Estudiantes
 * Felipe Quiroga
