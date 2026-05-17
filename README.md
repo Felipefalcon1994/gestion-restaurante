@@ -1,46 +1,37 @@
+# Microservicio de Pagos - Sistema de Restaurante
 
-<h1 , align="center">Gestión Restaurante.</h1>
+Este proyecto es parte de una arquitectura basada en **6 microservicios** para la gestión integral de un restaurante.  
+Este microservicio se encarga de gestionar los pagos asociados a los pedidos, consultando el total directamente desde el microservicio de pedidos.
 
-## Descripción del Proyecto
-Este proyecto es el backend para administrar un restaurante, construido usando una arquitectura de microservicios. Para esta entrega, el sistema cuenta con 6 microservicios  conectados a sus propias bases de datos mediante Docker.
+---
 
-## Profesor
-* Hernan Saavedra
+# 🛠️ Tecnologías y Herramientas
 
-## Estudiantes
-* Felipe Quiroga
-* Jorge Cañas
+- Java 17
+- Spring Boot 3.3.5
+- Spring Data JPA (Hibernate)
+- Spring WebFlux (WebClient para comunicación entre microservicios)
+- MySQL 8.0 (Desplegado en Docker - `db_facturacion`)
+- Spring Boot Validation (JSR 380)
+- Lombok
 
+---
 
-## Funcionalidades Implementadas
-En esta etapa del proyecto, se desarrollaron los siguientes 6 microservicios:
+# 🏗️ Arquitectura y Patrones
 
-**1. Microservicio de Menú (Puerto 8081)**
-* Permite crear, leer, actualizar y eliminar (CRUD) los productos que se venden en el restaurante y sus categorías.
+- Arquitectura CSR (Controller, Service, Repository)
+- Manejo centralizado de excepciones con `@ControllerAdvice`
+- Uso de DTOs para transferencia de datos y validaciones
+- Comunicación con `ms-pedidos` mediante `WebClient`
+- Base de datos independiente (`db_facturacion`)
 
-**2. Microservicio de Inventario (Puerto 8082)**
-* Controla el stock de los ingredientes en la bodega (Insumos).
-* Gestiona las Recetas, vinculando los ingredientes de la bodega con los platos del menú.
+---
 
-**3. Microservicio de Usuarios (Puerto 8083)**
-* Administra los Roles de los empleados (Administrador, Mesero, Cocinero, etc.).
-* Registra los Usuarios que tendrán acceso al sistema.
+# ⚙️ Configuración y Ejecución
 
-## Pasos para Ejecutar
+1. El contenedor MySQL en Docker debe estar en ejecución en el puerto `3306`
+2. El microservicio `ms-pedidos` debe estar corriendo en el puerto `8084`
+3. Ejecuta la clase principal:
 
-**1. Levantar la base de datos (Docker)**
-* Descargar Docker Desktop de la pagina oficial [Enlace Docker oficial](https://www.docker.com/products/docker-desktop/)
-* Abrir Docker
-* Descargar todo el contenido, los microservicios y Docker Restaurant
-* Abre una terminal en esta carpeta Docker restaurant "Tip: Dar segundo clic en la carpeta y poner abrir terminal".
-* Ejecuta el comando: `docker-compose up -d`
-* Esto creará automáticamente las bases de datos para los seis microservicios en el puerto 3306.
-
-**2. Iniciar los microservicios**
-Abre tu editor de código (como VS Code o IntelliJ) y ejecuta los proyectos en este orden:
-1. `menu` (Iniciará en localhost:8081)
-2. `inventario` (Iniciará en localhost:8082)
-3. `usuarios` (Iniciará en localhost:8083)
-
-**3. Probar la aplicación**
-Usa Postman para hacer peticiones (GET, POST, PUT, DELETE) a los puertos mencionados para interactuar con los datos.
+```java
+PagosApplication.java
