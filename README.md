@@ -26,6 +26,18 @@ En esta etapa del proyecto, se desarrollaron los siguientes 6 microservicios:
 * Administra los Roles de los empleados (Administrador, Mesero, Cocinero, etc.).
 * Registra los Usuarios que tendrán acceso al sistema.
 
+**4. Microservicio de Pedidos (Puerto 8084)**
+* Gestiona las órdenes de los clientes vinculando usuarios y productos del menú.
+* Calcula totales y mantiene el estado general del pedido.
+
+**5. Microservicio de Cocina (Puerto 8085)**
+* Recibe los pedidos confirmados para su elaboración en cola de tickets.
+* Actualiza los estados de preparación (Ej: EN_PREPARACION, LISTO).
+
+**6. Microservicio de Pagos (Puerto 8086)**
+* Procesa los pagos de las órdenes finalizadas.
+* Soporta distintos métodos de pago (EFECTIVO, DEBITO, CREDITO, TRANSFERENCIA).
+
 ## Pasos para Ejecutar
 
 **1. Levantar la base de datos (Docker)**
@@ -41,6 +53,9 @@ Abre tu editor de código (como VS Code o IntelliJ) y ejecuta los proyectos en e
 1. `menu` (Iniciará en localhost:8081)
 2. `inventario` (Iniciará en localhost:8082)
 3. `usuarios` (Iniciará en localhost:8083)
+4. `pedidos` (Iniciará en localhost:8084)
+5. `cocina` (Iniciará en localhost:8085)
+6. `pagos` (Iniciará en localhost:8086)
 
 **3. Probar la aplicación**
 Usa Postman para hacer peticiones (GET, POST, PUT, DELETE) a los puertos mencionados para interactuar con los datos.
