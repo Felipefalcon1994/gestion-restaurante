@@ -7,18 +7,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 public class PedidoClient {
-    private final WebClient.Builder webClientBuilder;
+    private final WebClient webClient;
 
     @Value("${pedidos-service.url}")
     private String pedidosServiceUrl;
 
-    public PedidoClient(WebClient.Builder webClientBuilder) {
-        this.webClientBuilder = webClientBuilder;
+    public PedidoClient() {
+        this.webClient = WebClient.create();
     }
 
     public PedidoDTO buscarPedidoPorId(Long id) {
         try {
-            return webClientBuilder.build()
+            return webClient
                     .get()
                     .uri(pedidosServiceUrl + "/{id}", id)
                     .retrieve()
@@ -31,14 +31,14 @@ public class PedidoClient {
 
     public void actualizarEstadoPedido(Long id, String estado) {
         try {
-            webClientBuilder.build()
+            webClient
                     .patch()
                     .uri(pedidosServiceUrl + "/{id}/estado?estado={estado}", id, estado)
                     .retrieve()
                     .bodyToMono(Void.class)
                     .block();
         } catch (Exception e) {
-            // log error
+            
         }
     }
 }
