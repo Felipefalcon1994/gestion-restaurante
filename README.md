@@ -103,3 +103,15 @@ Para probar que todos los microservicios se comunican correctamente, ejecuta est
 ```json
 { "pedidoIdExterno": 1, "metodoPago": "DEBITO" }
 ```
+
+## Arquitectura de Base de Datos (Database-per-service)
+
+A continuación se presenta el modelo relacional lógico, donde cada microservicio gestiona su propia base de datos de forma aislada, comunicándose mediante IDs externos y WebClient:
+
+![Modelo Relacional](https://github.com/Felipefalcon1994/gestion-restaurante/blob/main/Diagrama_ER_restaurant%20v2.png)
+
+## Integracion de tablero en Trello:
+
+Se incluye la planificacion en Trello de los procesos que se hizo en el trabajo.
+
+https://trello.com/invite/b/6a0b88b7d14da40b9dd7c9c6/ATTId66b7399c9084fd67b3b7fd66e2a4c1f96A9BA71/proyecto-restaurante-arquitectura-microservicios
