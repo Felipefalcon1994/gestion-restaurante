@@ -1,0 +1,3 @@
+-- Los pedidos son transaccionales (se generan por el uso del sistema en vivo).
+-- Se deja este archivo preparado en caso de necesitar insertar datos de prueba manuales:
+-- INSERT IGNORE INTO pedido (id, usuario_id_externo, producto_id_externo, cantidad, estado) VALUES (1, 1, 1, 2, 'PENDIENTE');

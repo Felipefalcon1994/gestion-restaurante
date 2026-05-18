@@ -1,0 +1,1 @@
+INSERT IGNORE INTO insumo (id, nombre, unidad_medida, stock_actual, stock_minimo) VALUES (1, 'Carne de Hamburguesa', 'Unidad', 100, 20);

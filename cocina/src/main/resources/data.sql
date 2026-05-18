@@ -1,0 +1,2 @@
+-- Los pagos se registran al finalizar los pedidos.
+-- Se deja este archivo preparado para futuras configuraciones (ej: insertar métodos de pago en BD si dejaran de ser un Enum).

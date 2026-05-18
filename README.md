@@ -58,7 +58,7 @@ Abre tu editor de código (como VS Code o IntelliJ) y ejecuta los proyectos en e
 6. `pagos` (Iniciará en localhost:8086)
 
 **3. Probar la aplicación**
-Usa Postman para hacer peticiones (GET, POST, PUT, DELETE) a los puertos mencionados para interactuar con los datos.
+Usa Postman para hacer peticiones a los puertos mencionados. A continuación tienes ejemplos rápidos para probar el flujo completo.
 
 ---
 
