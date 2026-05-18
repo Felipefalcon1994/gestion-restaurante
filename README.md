@@ -59,3 +59,47 @@ Abre tu editor de código (como VS Code o IntelliJ) y ejecuta los proyectos en e
 
 **3. Probar la aplicación**
 Usa Postman para hacer peticiones (GET, POST, PUT, DELETE) a los puertos mencionados para interactuar con los datos.
+
+---
+
+## 🧪 Ejemplos Rápidos para Postman (Flujo Completo)
+
+Para probar que todos los microservicios se comunican correctamente, ejecuta estas peticiones en orden:
+
+**1. Crear Categoría (Menú - 8081)**
+* **POST** `http://localhost:8081/api/categorias`
+```json
+{ "nombre": "Platos Principales", "descripcion": "Comida fuerte" }
+```
+
+**2. Crear Producto (Menú - 8081)**
+* **POST** `http://localhost:8081/api/productos`
+```json
+{ "nombre": "Hamburguesa Clásica", "precio": 5000, "idCategoria": 1 }
+```
+
+**3. Crear Usuario (Usuarios - 8083)**
+* **POST** `http://localhost:8083/api/usuarios`
+```json
+{ "nombre": "Jorge Cañas", "correo": "jorge@correo.com", "password": "123", "idRol": 1 }
+```
+
+**4. Crear un Pedido (Pedidos - 8084)**
+*(Internamente verificará que el usuario 1 y producto 1 existan)*
+* **POST** `http://localhost:8084/api/pedidos`
+```json
+{ "usuarioIdExterno": 1, "productoIdExterno": 1, "cantidad": 2 }
+```
+
+**5. Recibir en Cocina (Cocina - 8085)**
+* **POST** `http://localhost:8085/api/cocina/recibir`
+```json
+{ "pedidoIdExterno": 1, "observaciones": "Sin cebolla" }
+```
+
+**6. Pagar el Pedido (Pagos - 8086)**
+*(Internamente irá a buscar el total a cobrar al servicio de Pedidos)*
+* **POST** `http://localhost:8086/api/pagos`
+```json
+{ "pedidoIdExterno": 1, "metodoPago": "DEBITO" }
+```
