@@ -1,46 +1,37 @@
+# Microservicio de Cocina - Sistema de Restaurante
 
-<h1 , align="center">Gestión Restaurante.</h1>
+Este proyecto es parte de una arquitectura basada en **6 microservicios** para la gestión integral de un restaurante. Este microservicio se encarga de recibir los pedidos confirmados, gestionar la cola de preparación (tickets) y actualizar el estado de los platos elaborados.
 
-## Descripción del Proyecto
-Este proyecto es el backend para administrar un restaurante, construido usando una arquitectura de microservicios. Para esta entrega, el sistema cuenta con 6 microservicios  conectados a sus propias bases de datos mediante Docker.
+## 🛠️ Tecnologías y Herramientas
 
-## Profesor
-* Hernan Saavedra
+* **Java 17 / 21**
+* **Spring Boot 3.x**
+* **Spring Data JPA** (Hibernate)
+* **MySQL 8.0** (Desplegado en Docker - `db_cocina`)
+* **Spring WebFlux (WebClient)** (Para comunicación con pedidos)
+* **Lombok**
 
-## Estudiantes
-* Felipe Quiroga
-* Jorge Cañas
+## 🏗️ Arquitectura y Patrones
 
+* Arquitectura **CSR** (Controller, Service, Repository).
+* Comunicación síncrona mediante **WebClient** para notificar al microservicio de `pedidos` cuando un plato ha sido elaborado.
+* Gestión de estados de preparación (ej. PENDIENTE, EN_PREPARACION, LISTO).
 
-## Funcionalidades Implementadas
-En esta etapa del proyecto, se desarrollaron los siguientes 6 microservicios:
+## ⚙️ Configuración y Ejecución
 
-**1. Microservicio de Menú (Puerto 8081)**
-* Permite crear, leer, actualizar y eliminar (CRUD) los productos que se venden en el restaurante y sus categorías.
+1. El contenedor MySQL en Docker debe estar en ejecución en el puerto `3306`.
+2. El microservicio de `pedidos` (8084) debe estar activo para que la cocina pueda actualizar los estados.
+3. Ejecuta la clase principal `CocinaApplication.java`.
+4. El servidor se levantará en el puerto **`8085`**.
 
-**2. Microservicio de Inventario (Puerto 8082)**
-* Controla el stock de los ingredientes en la bodega (Insumos).
-* Gestiona las Recetas, vinculando los ingredientes de la bodega con los platos del menú.
+## 📡 Endpoints de la API
 
-**3. Microservicio de Usuarios (Puerto 8083)**
-* Administra los Roles de los empleados (Administrador, Mesero, Cocinero, etc.).
-* Registra los Usuarios que tendrán acceso al sistema.
+### Cocina / Tickets (`/api/cocina`)
 
-## Pasos para Ejecutar
-
-**1. Levantar la base de datos (Docker)**
-* Descargar Docker Desktop de la pagina oficial [Enlace Docker oficial](https://www.docker.com/products/docker-desktop/)
-* Abrir Docker
-* Descargar todo el contenido, los microservicios y Docker Restaurant
-* Abre una terminal en esta carpeta Docker restaurant "Tip: Dar segundo clic en la carpeta y poner abrir terminal".
-* Ejecuta el comando: `docker-compose up -d`
-* Esto creará automáticamente las bases de datos para los seis microservicios en el puerto 3306.
-
-**2. Iniciar los microservicios**
-Abre tu editor de código (como VS Code o IntelliJ) y ejecuta los proyectos en este orden:
-1. `menu` (Iniciará en localhost:8081)
-2. `inventario` (Iniciará en localhost:8082)
-3. `usuarios` (Iniciará en localhost:8083)
-
-**3. Probar la aplicación**
-Usa Postman para hacer peticiones (GET, POST, PUT, DELETE) a los puertos mencionados para interactuar con los datos.
+| Método | Endpoint | Descripción | Body (JSON) |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/api/cocina/pendientes` | Lista los tickets pendientes de preparar | - |
+| **POST** | `/api/cocina/recibir` | Recibe un nuevo ticket desde Pedidos | `{"pedidoIdExterno": 1, "observaciones": "Sin cebolla"}` |
+| **PUT** | `/api/cocina/preparar/{id}`| Pasa un ticket a estado EN_PREPARACION | - |
+| **PUT** | `/api/cocina/listo/{id}`| Marca un ticket como LISTO y avisa a Pedidos | - |
+| **DELETE**| `/api/cocina/{id}`| Elimina un ticket (ej. pedido cancelado) | - |
