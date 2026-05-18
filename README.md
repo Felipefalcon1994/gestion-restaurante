@@ -103,3 +103,9 @@ Para probar que todos los microservicios se comunican correctamente, ejecuta est
 ```json
 { "pedidoIdExterno": 1, "metodoPago": "DEBITO" }
 ```
+
+## Arquitectura de Base de Datos (Database-per-service)
+
+A continuación se presenta el modelo relacional lógico, donde cada microservicio gestiona su propia base de datos de forma aislada, comunicándose mediante IDs externos y WebClient:
+
+![Modelo Relacional](main/Diagrama_ER_restaurant v2.png)
