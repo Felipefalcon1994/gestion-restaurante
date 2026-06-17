@@ -7,4 +7,5 @@ import com.example.menu.model.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
     
+    
 }

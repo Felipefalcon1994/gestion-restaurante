@@ -43,6 +43,11 @@ public class ProductoService {
         return productoRepository.findAll();
     }
 
+    public List<Producto> listarPorCategoria(Long idCategoria){
+        return productoRepository.findByCategoria_IdCategoria(idCategoria);
+    }
+
+
     public Producto obtenerPorId(Long id) {
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado con el ID: " + id));

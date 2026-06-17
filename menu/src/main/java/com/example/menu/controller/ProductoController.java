@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
+
+
+
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoController {
@@ -38,6 +41,7 @@ public class ProductoController {
         Producto productoCreado = productoService.crearProducto(productoDTO);
         return new ResponseEntity<>(productoCreado, HttpStatus.CREATED);
     }
+    
 
     @GetMapping
     public ResponseEntity<List<Producto>> obtenerProductos(){
@@ -49,6 +53,12 @@ public class ProductoController {
     public ResponseEntity<Producto> obtenerPorId(@PathVariable Long id) {
         Producto producto = productoService.obtenerPorId(id);
         return new ResponseEntity<>(producto, HttpStatus.OK);
+    }
+
+    @GetMapping("/categoria/{idCategoria}")
+    public ResponseEntity<List<Producto>> obtenerPorCategoria(@PathVariable Long idCategoria) {
+        List<Producto> lista = productoService.listarPorCategoria(idCategoria);
+        return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
