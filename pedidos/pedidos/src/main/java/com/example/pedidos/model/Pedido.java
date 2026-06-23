@@ -44,7 +44,17 @@ public class Pedido {
     private LocalDateTime fechaPedido;
 
     public enum EstadoPedido {
-        PENDIENTE, EN_COCINA, LISTO, ENTREGADO, CANCELADO
+        PENDIENTE, EN_COCINA, LISTO, ENTREGADO, CANCELADO, EN_PROCESO
+    }
+
+    public void setId(long l) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setId'");
+    }
+
+    public Long getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 }
 
