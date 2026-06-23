@@ -16,8 +16,10 @@ public class InsumoService {
         this.insumoRepository = insumoRepository;
     }
 
-    // CREAR
     public Insumo crearInsumo(InsumoDTO dto) {
+        if (dto.getStockActual() < 0 || dto.getStockMinimo() < 0) {
+            throw new IllegalArgumentException("El stock no puede ser negativo");
+        }
         Insumo insumo = new Insumo();
         insumo.setNombre(dto.getNombre());
         insumo.setUnidadMedida(dto.getUnidadMedida());

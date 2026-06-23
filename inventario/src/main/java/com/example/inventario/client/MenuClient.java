@@ -1,29 +1,23 @@
 package com.example.inventario.client;
 
 import com.example.inventario.dto.ProductoMenuDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-@Component
+@Service
 public class MenuClient {
 
-    private final WebClient webClient;
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Value("${menu-service.url}")
     private String menuServiceUrl;
 
-    public MenuClient() {
-        this.webClient = WebClient.create();
-    }
-
     public ProductoMenuDTO obtenerProductoPorId(Long idProducto) {
         try {
-            return webClient.get()
-                    .uri(menuServiceUrl + "/{id}", idProducto)
-                    .retrieve()
-                    .bodyToMono(ProductoMenuDTO.class)
-                    .block();
+            return restTemplate.getForObject(menuServiceUrl + "/" + idProducto, ProductoMenuDTO.class);
         } catch (Exception e) {
             return null;
         }

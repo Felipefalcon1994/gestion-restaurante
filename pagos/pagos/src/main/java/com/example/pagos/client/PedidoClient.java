@@ -9,18 +9,18 @@ import com.example.pagos.dto.PedidoDTO;
 @Component
 public class PedidoClient {
     
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     @Value("${pedidos-service.url}")
     private String pedidosServiceUrl;
 
-    public PedidoClient() {
-        this.webClient = WebClient.create();
+    public PedidoClient(WebClient.Builder webClientBuilder) {
+        this.webClientBuilder = webClientBuilder;
     }
 
     public PedidoDTO buscarPedidoPorId(Long id) {
         try {
-            return webClient
+            return webClientBuilder.build()
                     .get()
                     .uri(pedidosServiceUrl + "/{id}", id)
                     .retrieve()
@@ -33,7 +33,7 @@ public class PedidoClient {
 
     public void actualizarEstadoPedido(Long id, String estado) {
         try {
-            webClient
+            webClientBuilder.build()
                     .patch()
                     .uri(pedidosServiceUrl + "/{id}/estado?estado={estado}", id, estado)
                     .retrieve()

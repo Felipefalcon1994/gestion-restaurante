@@ -2,7 +2,7 @@ package com.example.cocina.dto;
 
 import lombok.Data;
 
-@Data   
+@Data
 public class PedidoDTO {
     
     private Long idPedido;
