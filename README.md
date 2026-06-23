@@ -6,7 +6,7 @@ Este proyecto es el backend transaccional para administrar las operaciones de un
 ## Datos Académicos
 * **Institución:** Duoc UC
 * **Profesor:** Hernan Saavedra
-* **Estudiantes:** Felipe Quiroga y Jorge Cañas
+* **Estudiantes:** Felipe Quiroga - Jorge Cañas - Fernanda Peña
 
 ---
 
