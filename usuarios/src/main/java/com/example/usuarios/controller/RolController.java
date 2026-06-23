@@ -36,7 +36,8 @@ public class RolController {
     }
 
     @Operation(summary = "Crear nuevo rol", description = "Registra un perfil de acceso en el sistema.")
-    @ApiResponses(value = {
+
+    @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Rol creado exitosamente"),
         @ApiResponse(responseCode = "400", description = "Datos inválidos")
     })
@@ -57,14 +58,14 @@ public class RolController {
     }
 
     @Operation(summary = "Buscar rol por ID", description = "Busca un rol específico.")
-    @ApiResponses(value = {
+    @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Rol encontrado"),
         @ApiResponse(responseCode = "404", description = "Rol no encontrado")
     })
 
     @GetMapping("/{id}")
     public ResponseEntity<Rol> obtenerPorId(
-        @Parameter(description = "ID del rol", example = "1") @PathVariable Long id) {
+            @Parameter(description = "ID del rol", example = "1") @PathVariable Long id) {
         return new ResponseEntity<>(rolService.obtenerPorId(id), HttpStatus.OK);
     }
 
